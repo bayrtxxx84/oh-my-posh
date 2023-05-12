@@ -1,0 +1,127 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "background": "#d75f00",
+                    "foreground": "#dedada",
+                    "properties": {
+                        "alpine": "\uf300 ",
+                        "arch": "\uf303 ",
+                        "centos": "\uf304 ",
+                        "debian": "\uf306 ",
+                        "elementary": "\uf309 ",
+                        "fedora": "\uf30a ",
+                        "gentoo": "\uf30d ",
+                        "linux": "\ue712 ",
+                        "macos": "\ue711 ",
+                        "manjaro": "\uf312 ",
+                        "mint": "\uf30f ",
+                        "opensuse": "\uf314 ",
+                        "raspbian": "\uf315 ",
+                        "ubuntu": "\uf31c ",
+                        "windows": "\ue70f "
+                    },
+                    "background_templates": [
+                        "{{if eq \"windows\" .OS}}#3a86ff{{ end }}",
+                        "{{if eq \"ubuntu\" .OS}}#d75f00{{ end }}",
+                        "{{if eq \"centos\" .OS}}#951C7A{{ end }}",
+                        "{{if eq \"alpine\" .OS}}#464646{{ end }}",
+                        "{{if eq \"fedora\" .OS}}#072C61{{ end }}",
+                        "{{if eq \"debian\" .OS}}#a80030{{ end }}",
+                        "{{if eq \"kali\" .OS}}#2783f5{{ end }}"
+                    ],
+                    "style": "diamond",
+                    "leading_diamond": "\ue0c7",
+                    "trailing_diamond": "\ue0c6",
+                    "template": " {{ .Icon }}",
+                    "type": "os"
+                },
+                {
+                    "style": "powerline",
+                    "foreground": "#FFC600",
+                    "template": " \uf007 {{ .UserName }} ",
+                    "type": "session"
+                },
+                {
+                    "foreground": "#8AADF4",
+                    "properties": {
+                        "style": "full"
+                    },
+                    "style": "diamond",
+                    "template": "<#6b6b6b>\uf105</> \uf07c {{ .Path }} ",
+                    "type": "path"
+                },
+                {
+                    "foreground": "#19d48f",
+                    "foreground_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#6287ff{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#7f62ff{{ end }}",
+                        "{{ if gt .Ahead 0 }}#9962ff{{ end }}",
+                        "{{ if gt .Behind 0 }}#c062ff{{ end }}"
+                    ],
+                    "properties": {
+                        "branch_max_length": 25,
+                        "fetch_stash_count": true,
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true
+                    },
+                    "style": "diamond",
+                    "template": "<#19d48f>on</> {{.UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
+                    "type": "git"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "right",
+            "newline": false,
+            "segments": [
+                {
+                    "foreground": "#bebdbd",
+                    "properties": {
+                        "always_enabled": true
+                    },
+                    "style": "plain",
+                    "template": "{{ if gt .Code 0 }}\uf659{{ else }}\uf633{{ end }} ",
+                    "type": "exit"
+                },
+                {
+                    "foreground": "#bebdbd",
+                    "properties": {
+                        "always_enabled": true
+                    },
+                    "style": "plain",
+                    "template": "{{ .FormattedMs }} ",
+                    "type": "executiontime"
+                },
+                {
+                    "foreground": "#bebdbd",
+                    "style": "diamond",
+                    "leading_diamond": "\uf101",
+                    "template": " \uf85a {{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1000000000.0) }}/{{ (div .PhysicalTotalMemory 1000000000.0) }}GB ",
+                    "type": "sysinfo"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "style": "plain",
+                    "foreground": "#dedada",
+                    "template": " {{ .Name }} \ufcb5 :",
+                    "type": "shell"
+                }
+            ],
+            "type": "prompt"
+        }
+    ],
+    "final_space": true,
+    "version": 2
+}
